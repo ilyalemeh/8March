@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>С 8 Марта! 💐</title>
+    <style>
+        /* Основные стили */
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+            color: #333;
+            text-align: center;
+            padding: 20px;
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        h1 {
+            color: #e91e63;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        .question {
+            margin: 20px 0;
+            font-size: 1.2em;
+            animation: slideIn 0.5s ease-in-out;
+        }
+
+        .options {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 10px;
+            flex-wrap: wrap;
+        }
+
+        .options button {
+            padding: 10px 20px;
+            font-size: 1em;
+            background-color: #e91e63;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            flex: 1 1 auto;
+            max-width: 200px;
+        }
+
+        .options button:hover {
+            background-color: #c2185b;
+            transform: scale(1.05);
+        }
+
+        .password {
+            font-size: 1.5em;
+            color: #e91e63;
+            margin-top: 20px;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        .big-heart {
+            font-size: 1.5em;
+            color: #e91e63;
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 20px auto;
+            animation: pulse 2s infinite;
+            font-size: 400px;
+
+        }
+
+        .big-heart span {
+            margin: 2px;
+        }
+
+        /* Анимации */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(-20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        /* Адаптация для мобильных устройств */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2em;
+            }
+
+            .question {
+                font-size: 1em;
+            }
+
+            .options button {
+                padding: 8px 16px;
+                font-size: 0.9em;
+                max-width: 150px;
+            }
+
+            .big-heart {
+                font-size: 1.2em;
+                max-width: 250px;
+                font-size: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>💐 Дорогая моя Дашенька, с 8 Марта! 💐</h1>
+    <p>Ответь на несколько вопросов, чтобы узнать пароль к моему сердцу:</p>
+
+    <div id="quiz">
+        <div class="question" id="question1">
+            <p>1) Кто у меня самая любимая буся?</p>
+            <div class="options">
+                <button onclick="checkAnswer(1, 'Ты')">Ты</button>
+                <button onclick="checkAnswer(1, 'Я')">Я</button>
+                <button onclick="checkAnswer(1, 'Кто-то другой')">Кто-то другой</button>
+            </div>
+        </div>
+
+        <div class="question" id="question2" style="display: none;">
+            <p>2) Кто самый красивый человечек?</p>
+            <div class="options">
+                <button onclick="checkAnswer(2, 'Ты')">Ты</button>
+                <button onclick="checkAnswer(2, 'Я')">Я</button>
+                <button onclick="checkAnswer(2, 'Кто-то другой')">Кто-то другой</button>
+            </div>
+        </div>
+
+        <div class="question" id="question3" style="display: none;">
+            <p>3) Кто самый внимательный человечек?</p>
+            <div class="options">
+                <button onclick="checkAnswer(3, 'Ты')">Ты</button>
+                <button onclick="checkAnswer(3, 'Я')">Я</button>
+                <button onclick="checkAnswer(3, 'Кто-то другой')">Кто-то другой</button>
+            </div>
+        </div>
+
+        <div class="question" id="question4" style="display: none;">
+            <p>4) Кто мой любимый цветочек ангелочек?</p>
+            <div class="options">
+                <button onclick="checkAnswer(4, 'Ты')">Ты</button>
+                <button onclick="checkAnswer(4, 'Я')">Я</button>
+                <button onclick="checkAnswer(4, 'Кто-то другой')">Кто-то другой</button>
+            </div>
+        </div>
+
+        <div class="question" id="question5" style="display: none;">
+            <p>5) Мы всегда будем рядом?</p>
+            <div class="options">
+                <button onclick="checkAnswer(5, 'Да')">Да</button>
+                <button onclick="checkAnswer(5, 'Конечно')">Конечно</button>
+                <button onclick="checkAnswer(5, 'Обязательно')">Обязательно</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="result" style="display: none;">
+        <div class="password">🎉 Ты разгадала ребус! 🎉</div>
+        <div class="password">Пароль к моему сердцу: <strong>YSjf72B</strong> 💌</div>
+        <div class="big-heart">
+            💖
+        </div>
+    </div>
+
+    <script>
+        let currentQuestion = 1;
+
+        function checkAnswer(questionNumber, answer) {
+            const correctAnswers = {
+                1: 'Я',
+                2: 'Я',
+                3: 'Я',
+                4: 'Я',
+                5: ["Да", "Конечно", "Обязательно"]
+            };
+
+            if (questionNumber === 5) {
+                if (!correctAnswers[5].includes(answer)) {
+                    alert("😢 Почти правильно, но попробуй ещё раз!");
+                    return;
+                }
+            } else {
+                if (answer !== correctAnswers[questionNumber]) {
+                    alert("😢 Почти правильно, но попробуй ещё раз!");
+                    return;
+                }
+            }
+
+            if (currentQuestion < 5) {
+                document.getElementById(`question${currentQuestion}`).style.display = "none";
+                currentQuestion++;
+                document.getElementById(`question${currentQuestion}`).style.display = "block";
+            } else {
+                document.getElementById("quiz").style.display = "none";
+                document.getElementById("result").style.display = "block";
+            }
+        }
+    </script>
+</body>
+</html>
